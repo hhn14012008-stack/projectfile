@@ -7,10 +7,18 @@ app = FastAPI(
     version="1.0.0"
 )
 
+# Define allowed origins for CORS
+origins = [
+    "http://localhost:3000",      # Link chạy thử nghiệm ở máy cục bộ (React/Next.js)
+    "http://127.0.0.1:3000",
+    "https://yourdomain.com",     # Link thật của trang Web Frontend của bạn sau này
+    "https://vercel.app"          # Ví dụ link frontend trên Vercel
+]
+
 # Add CORS middleware for cross-origin requests
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=origins,        # Điền biến origins vừa tạo ở trên vào đây
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
